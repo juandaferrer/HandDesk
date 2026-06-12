@@ -7,6 +7,7 @@ Este repositorio contiene el código fuente, la configuración de despliegue y l
 
 ---
 
+
 ## 🚀 Arquitectura y Tecnologías
 
 El sitio está diseñado bajo principios de alta disponibilidad, bajo consumo de recursos y automatización:

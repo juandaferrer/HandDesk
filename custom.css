@@ -1,0 +1,138 @@
+:root {
+  --rh-red: #ee0000;
+  --rh-red-deep: #8a0000;
+  --navy-blue: #3f6883;
+  --navy-dark: #0f1a21;
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* 1. NAV: Indicador magnético */
+.navbar-nav > li > a {
+  position: relative;
+  overflow: hidden; 
+}
+
+.navbar-nav > li > a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%; 
+  width: 0;
+  height: 3px;
+  background: var(--rh-red);
+  transition: width 0.7s var(--ease-out-expo), left 0.4s var(--ease-out-expo);
+}
+
+.navbar-nav > li > a:hover::after,
+.navbar-nav > li.active > a::after {
+  width: 100%;
+  left: 0;
+}
+
+/* 2. CARDS: Elevación Cinética */
+/* 2. CARDS: Elevación Cinética */
+.card {
+  position: relative;
+  z-index: 1;
+  opacity: 0.9;
+  display: block; /* Asegura que responda correctamente al transform */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform, box-shadow;
+  
+  /* Transición limpia y fluida */
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+              box-shadow 0.4s ease,
+              opacity 0.3s ease;
+}
+
+.card:hover {
+  z-index: 99 !important; /* Pasa por encima de las demás */
+  opacity: 1 !important;
+  
+  /* Forzamos el escalado y el desplazamiento hacia arriba */
+  transform: scale(1.06) translateY(-10px) !important;
+  -webkit-transform: scale(1.04) translateY(-10px) !important;
+  
+  /* Sombra profunda para dar efecto de flotación */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25) !important;
+  border-left: 4px solid var(--rh-red) !important;
+}
+
+.card:active {
+  transform: scale(1.01) translateY(-4px) !important;
+  transition: transform 0.1s ease !important;
+}
+
+/* Contexto inteligente: Opaca las demás si el navegador soporta :has */
+@supports (selector(:has(*))) {
+  .container:has(.card:hover) .card:not(:hover) {
+    opacity: 0.6;
+    filter: grayscale(0.2);
+  }
+}
+
+/* 3. BOTONES: Efecto de Presión Realista */
+.btn-primary,
+#enviar-mensaje,
+button[type="submit"] {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.3s var(--ease-out-expo);
+}
+
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 0%; height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: width 0.3s ease;
+  z-index: -1;
+}
+
+.btn-primary:hover::before {
+  width: 100%;
+}
+
+.btn-primary:active {
+  transform: scale(0.96); 
+}
+
+/* 4. FORMULARIOS: Focus de Precisión */
+.form-control {
+  border: 1px solid #ddd;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s var(--ease-out-expo);
+}
+
+.form-control:focus {
+  border-color: var(--rh-red);
+  box-shadow: 0 0 0 3px rgba(238, 0, 0, 0.1); 
+  transform: translateX(4px); 
+}
+
+/* 5. TABLAS: Desplazamiento Fluido */
+.table > tbody > tr {
+  cursor: pointer;
+  /* Eliminado transform: scale aquí para evitar parpadeos y comportamientos erráticos en tablas */
+  transition: background-color 0.2s ease;
+}
+
+.table > tbody > tr td {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.table > tbody > tr:hover td {
+  background-color: rgba(238, 0, 0, 0.03) !important; /* Tinte Red Hat sutil */
+  color: var(--rh-red);
+}
+
+/* 6. ICONOS: Rotación Inteligente */
+.social-round-icon {
+  transition: transform 0.6s var(--ease-out-expo), background 0.3s ease;
+}
+
+.social-round-icon:hover {
+  transform: rotate(15deg) scale(1.15); 
+  background-color: var(--rh-red);
+}
