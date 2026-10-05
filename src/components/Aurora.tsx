@@ -69,14 +69,14 @@ struct ColorStop {
 };
 
 #define COLOR_RAMP(colors, factor, finalColor) {              \
-  int index = 0;                                            \
+  int index = 0;                                             \
   for (int i = 0; i < 2; i++) {                               \
      ColorStop currentColor = colors[i];                    \
      bool isInBetween = currentColor.position <= factor;    \
      index = int(mix(float(index), float(i), float(isInBetween))); \
-  }                                                         \
-  ColorStop currentColor = colors[index];                   \
-  ColorStop nextColor = colors[index + 1];                  \
+  }                                                          \
+  ColorStop currentColor = colors[index];                    \
+  ColorStop nextColor = colors[index + 1];                   \
   float range = nextColor.position - currentColor.position; \
   float lerpFactor = (factor - currentColor.position) / range; \
   finalColor = mix(currentColor.color, nextColor.color, lerpFactor); \
@@ -101,13 +101,14 @@ void main() {
   float midPoint = 0.20;
   float auroraAlpha = smoothstep(midPoint - uBlend * 0.5, midPoint + uBlend * 0.5, intensity);
   
-  // Usamos el color de la rampa directamente sin oscurecerlo por la intensidad
   vec3 auroraColor = rampColor;
   
-  // Desvanecimiento suave en los bordes para integrarlo con el fondo blanco
-  float edgeFadeX = smoothstep(0.0, 0.2, uv.x) * smoothstep(1.0, 0.8, uv.x);
-  float edgeFadeY = smoothstep(0.0, 0.3, uv.y) * smoothstep(1.0, 0.7, uv.y);
-  float finalAlpha = auroraAlpha * edgeFadeX * edgeFadeY * 0.35;
+  // Desvanecimiento ajustado para integrarse sobre fondos oscuros (Dark Theme)
+  float edgeFadeX = smoothstep(0.0, 0.15, uv.x) * smoothstep(1.0, 0.85, uv.x);
+  float edgeFadeY = smoothstep(0.0, 0.25, uv.y) * smoothstep(1.0, 0.75, uv.y);
+  
+  // Se incrementa la presencia (alfa) para destacar suavemente en modo oscuro
+  float finalAlpha = auroraAlpha * edgeFadeX * edgeFadeY * 0.55;
   
   fragColor = vec4(auroraColor, finalAlpha);
 }
@@ -122,11 +123,17 @@ interface AuroraProps {
 }
 
 export default function Aurora(props: AuroraProps) {
-  const { colorStops = ['#2881e7', '#378beb', '#12abf3'], amplitude = 1.0, blend = 0.5 } = props;
-  const propsRef = useRef<AuroraProps>(props);
+  // Colores por defecto ajustados al tema oscuro: Azul RHEL / Cyan Eléctrico / Violeta
+  const { 
+    colorStops = ['#1d4ed8', '#38bdf8', '#6366f1'], 
+    amplitude = 1.0, 
+    blend = 0.5 
+  } = props;
+
+  const propsRef = useRef(props);
   propsRef.current = props;
 
-  const ctnDom = useRef<HTMLDivElement>(null);
+  const ctnDom = useRef(null);
   
   useEffect(() => {
     const ctn = ctnDom.current;
@@ -137,7 +144,7 @@ export default function Aurora(props: AuroraProps) {
       premultipliedAlpha: false
     });
     const gl = renderer.gl;
-    gl.clearColor(1, 1, 1, 0); // Limpiar con alfa 0 transparente
+    gl.clearColor(0, 0, 0, 0); // Limpieza totalmente transparente
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
     let program: Program | undefined;
@@ -184,7 +191,7 @@ export default function Aurora(props: AuroraProps) {
       animateId = requestAnimationFrame(update);
       const { time = t * 0.01, speed = 1.0 } = propsRef.current;
       if (program) {
-        program.uniforms.uTime.value = time * speed * 0.2199999999;
+        program.uniforms.uTime.value = time * speed * 0.22;
         program.uniforms.uAmplitude.value = propsRef.current.amplitude ?? 1.0;
         program.uniforms.uBlend.value = propsRef.current.blend ?? blend;
         const stops = propsRef.current.colorStops ?? colorStops;
@@ -199,8 +206,6 @@ export default function Aurora(props: AuroraProps) {
       }
     };
 
-    // Only render while the hero is actually on screen, the shader is
-    // expensive enough to starve scrolling on integrated GPUs.
     let running = false;
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting && !running) {
@@ -226,5 +231,5 @@ export default function Aurora(props: AuroraProps) {
     };
   }, [amplitude, colorStops]);
 
-  return <div ref={ctnDom} className="w-full h-full" />;
+  return
 }
