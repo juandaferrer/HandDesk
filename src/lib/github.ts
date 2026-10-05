@@ -44,7 +44,7 @@ export function useGitHub(): RepoInfo {
 
     fetch(`https://api.github.com/repos/${REPO}`)
       .then(r => (r.ok ? r.json() : Promise.reject()))
-      .then(d => setInfo(prev => ({ ...prev, stars: d.stargazers_count })))
+      // .then(d => setInfo(prev => ({ ...prev, stars: d.stargazers_count })))
       .catch(() => {})
   }, [])
 
