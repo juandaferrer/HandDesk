@@ -49,8 +49,8 @@ const SKILLS = [
   },
   {
     icon: PaintBoardIcon,
-    title: 'Web Development & UI',
-    body: 'Building high-performance web applications using React, TypeScript, Tailwind CSS, Vite, and static hosting via Cloudflare.',
+    title: 'Hardware Diagnosis',
+    body: 'I have extensive experience in hardware repair, component troubleshooting, and technical equipment maintenance.',
   },
   {
     icon: LibraryIcon,
@@ -87,7 +87,7 @@ const PROJECTS = [
   {
     eyebrow: 'Literary Work',
     title: 'Una Carta para mi Amada Roxana',
-    body: 'Authored an independent 48-page narrative piece exploring deep interpersonal bonds, identity, and resilience, demonstrating long-form creative discipline and execution.',
+    body: 'Authored an independent 127-page narrative piece exploring deep interpersonal bonds, identity, and resilience, demonstrating long-form creative discipline and execution.',
     tag: 'Publication · 2026',
   },
 ]
