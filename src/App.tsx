@@ -199,6 +199,7 @@ function Hero() {
                 Operating System: Red Hat Enterprise Linux 9.7 (Plow)<br />
                 Kernel: Linux 5.14.0-427.el9.x86_64<br />
                 Architecture: x86-64
+                <span className="text-primary-bright">$</span><br />
               </code>
             </pre>
           </div>
