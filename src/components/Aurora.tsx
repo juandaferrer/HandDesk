@@ -69,14 +69,14 @@ struct ColorStop {
 };
 
 #define COLOR_RAMP(colors, factor, finalColor) {              \
-  int index = 0;                                             \
+  int index = 0;                                              \
   for (int i = 0; i < 2; i++) {                               \
      ColorStop currentColor = colors[i];                    \
      bool isInBetween = currentColor.position <= factor;    \
      index = int(mix(float(index), float(i), float(isInBetween))); \
-  }                                                          \
-  ColorStop currentColor = colors[index];                    \
-  ColorStop nextColor = colors[index + 1];                   \
+  }                                                           \
+  ColorStop currentColor = colors[index];                     \
+  ColorStop nextColor = colors[index + 1];                    \
   float range = nextColor.position - currentColor.position; \
   float lerpFactor = (factor - currentColor.position) / range; \
   finalColor = mix(currentColor.color, nextColor.color, lerpFactor); \
@@ -133,7 +133,7 @@ export default function Aurora(props: AuroraProps) {
   const propsRef = useRef(props);
   propsRef.current = props;
 
-  const ctnDom = useRef(null);
+  const ctnDom = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
     const ctn = ctnDom.current;
@@ -229,7 +229,7 @@ export default function Aurora(props: AuroraProps) {
       }
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
-  }, [amplitude, colorStops]);
+  }, [amplitude, colorStops, blend]);
 
-  return
+  return <div ref={ctnDom} className="h-full w-full" />;
 }
