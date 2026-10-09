@@ -9,7 +9,6 @@ import {
   ComputerIcon,
   HistoryIcon,
   GithubIcon,
-  StarIcon,
   Mail01Icon,
   SmartPhone01Icon,
   Briefcase01Icon,
@@ -23,7 +22,6 @@ import SplitText from '@/components/SplitText'
 import AnimatedContent from '@/components/AnimatedContent'
 import FadeContent from '@/components/FadeContent'
 import SpotlightCard from '@/components/SpotlightCard'
-import { useGitHub } from '@/lib/github'
 
 import logo from '@/assets/logo.png'
 
@@ -379,11 +377,9 @@ function Footer() {
 }
 
 export default function App() {
-  const info = useGitHub()
-
   return (
     <>
-      <Nav stars={info.stars} />
+      <Nav />
       <main>
         <Hero />
         <Skills />
