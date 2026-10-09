@@ -92,7 +92,7 @@ const PROJECTS = [
   },
 ]
 
-function Nav({ stars }: { stars: number | null }) {
+function Nav() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/70 backdrop-blur-md">
       <nav className="mx-auto flex h-14 max-w-6xl items-center gap-6 px-4 sm:px-6">
@@ -114,12 +114,6 @@ function Nav({ stars }: { stars: number | null }) {
         >
           <HugeiconsIcon icon={GithubIcon} size={16} strokeWidth={2} />
           <span className="hidden sm:inline">GitHub</span>
-          {stars !== null && (
-            <span className="flex items-center gap-1 text-xs">
-              <HugeiconsIcon icon={StarIcon} size={12} strokeWidth={2} />
-              {stars}
-            </span>
-          )}
         </a>
       </nav>
     </header>
