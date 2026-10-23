@@ -53,24 +53,30 @@ const FadeContent: React.FC<FadeContentProps> = ({
     const startPct = (1 - threshold) * 100;
     const getSeconds = (val: number) => (val > 10 ? val / 1000 : val);
 
+    // Estado inicial limpio con aceleración por hardware forzada
     gsap.set(el, {
       autoAlpha: initialOpacity,
-      filter: blur ? 'blur(10px)' : 'blur(0px)',
-      willChange: 'opacity, filter, transform'
+      filter: blur ? 'blur(10px)' : 'none',
+      willChange: 'opacity, filter, transform',
+      force3D: true
     });
 
     const tl = gsap.timeline({
       paused: true,
       delay: getSeconds(delay),
       onComplete: () => {
+        // Al terminar, removemos el filtro por completo para evitar artefactos visuales ("discos")
+        gsap.set(el, { filter: 'none' });
         if (onComplete) onComplete();
+
         if (disappearAfter > 0) {
           gsap.to(el, {
             autoAlpha: initialOpacity,
-            filter: blur ? 'blur(10px)' : 'blur(0px)',
+            filter: blur ? 'blur(10px)' : 'none',
             delay: getSeconds(disappearAfter),
             duration: getSeconds(disappearDuration),
             ease: disappearEase,
+            force3D: true,
             onComplete: () => onDisappearanceComplete?.()
           });
         }
@@ -81,7 +87,8 @@ const FadeContent: React.FC<FadeContentProps> = ({
       autoAlpha: 1,
       filter: 'blur(0px)',
       duration: getSeconds(duration),
-      ease: ease
+      ease: ease,
+      force3D: true
     });
 
     const st = ScrollTrigger.create({
