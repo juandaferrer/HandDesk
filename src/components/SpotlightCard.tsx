@@ -13,7 +13,7 @@ interface SpotlightCardProps extends React.PropsWithChildren {
 const SpotlightCard: React.FC<SpotlightCardProps> = ({
   children,
   className = '',
-  spotlightColor = 'rgba(37, 99, 235, 0.12)'
+  spotlightColor = 'rgba(37, 99, 235, 0.15)'
 }) => {
   const divRef = useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -56,10 +56,10 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
       className={`relative rounded-3xl border border-border bg-card text-card-foreground overflow-hidden p-8 ${className}`}
     >
       <div
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out"
+        className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-500 ease-in-out blur-xl"
         style={{
           opacity,
-          background: `radial-gradient(circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 80%)`
+          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 40%)`
         }}
       />
       {children}
