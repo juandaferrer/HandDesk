@@ -33,7 +33,7 @@ const SKILLS = [
   {
     icon: ServerStackIcon,
     title: 'Linux Systems Administration',
-    body: 'Configuring bare-metal servers, Red Hat Enterprise Linux (RHEL 9.7), custom XFS filesystems, LVM, and SSH security.',
+    body: 'Practicing bare-metal configurations, Red Hat Enterprise Linux (RHEL 9.7), custom XFS filesystems, LVM, and SSH security in a homelab environment.',
   },
   {
     icon: CpuIcon,
@@ -48,12 +48,12 @@ const SKILLS = [
   {
     icon: PaintBoardIcon,
     title: 'Hardware Diagnosis',
-    body: 'I have extensive experience in hardware repair, component troubleshooting, and technical equipment maintenance.',
+    body: 'Gaining hands-on experience in hardware repair, component troubleshooting, and technical equipment maintenance.',
   },
   {
     icon: LibraryIcon,
     title: 'Sovereignty & Open Source',
-    body: 'Advocating for digital ownership, open-source tooling, and efficient optimization scripts to debloat systems.',
+    body: 'Exploring digital ownership, open-source tooling, and efficient optimization scripts to debloat systems.',
   },
   {
     icon: TranslateIcon,
@@ -123,16 +123,16 @@ function Hero() {
     <section className="relative overflow-hidden">
       {!window.matchMedia('(prefers-reduced-motion: reduce)').matches && (
         <div className="absolute inset-0 opacity-50" aria-hidden>
-          <Aurora colorStops={['#358ef3', '#358ef3', '#358ef3']} amplitude={1.1} blend={0.55} speed={0.6} />
+          <Aurora colorStops={['#fdfdfd', '#949494', '#c2c2c2']} amplitude={1.1} blend={0.55} speed={0.6} />
         </div>
       )}
       <div className="absolute inset-0 opacity-50 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" aria-hidden>
-        <Aurora colorStops={['#2563eb', '#60a5fa', '#3b82f6']} amplitude={1.1} blend={0.55} speed={0.6} />
+        <Aurora colorStops={['#747474', '#dfdfdf', '#797979']} amplitude={1} blend={0.55} speed={0.1} />
       </div>
       <div className="relative mx-auto max-w-6xl px-4 pt-36 pb-20 text-center sm:px-6 sm:pt-44">
         <FadeContent duration={800}>
           <p className="mx-auto mb-6 w-fit rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs tracking-widest text-muted-foreground uppercase">
-            Systems Administration · Linux Infrastructure · Chile
+            Building Toward Infrastructure Engineering · Linux &amp; Enterprise Systems
           </p>
         </FadeContent>
 
@@ -147,7 +147,7 @@ function Hero() {
 
         <FadeContent duration={900} delay={400}>
           <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            Aspiring Infrastructure Architect focused on Linux systems administration, enterprise environments, and rigorous automation standards. Building robust technological foundations with an international vision.
+            Focused on mastering Linux systems administration, enterprise environments, and automation standards. Building the technical foundation required to architect scalable infrastructure.
           </p>
         </FadeContent>
 
@@ -181,17 +181,18 @@ function Hero() {
               <div className="size-3 rounded-full bg-red-500/80" />
               <div className="size-3 rounded-full bg-yellow-500/80" />
               <div className="size-3 rounded-full bg-green-500/80" />
-              <span className="text-xs text-muted-foreground ml-2 font-mono">juanda@rhel-node01 ~ </span>
+              <span className="text-xs text-muted-foreground ml-2 font-mono">juanda@rhel-node01 ~</span>
             </div>
             <pre className="font-mono text-xs sm:text-sm text-muted-foreground overflow-x-auto">
               <code>
-                <span className="text-primary-bright">$</span> hostnamectl status<br />
+                <span className="text-primary-bright">juanda@rhel-node01:~$</span> hostnamectl status<br />
                 Static hostname: rhel-node01.localdomain<br />
                 Icon name: computer-server<br />
                 Operating System: Red Hat Enterprise Linux 9.7 (Plow)<br />
                 Kernel: Linux 5.14.0-427.el9.x86_64<br />
                 Architecture: x86-64
-                <span className="text-primary-bright">$</span><br />
+                <br />
+                <span className="text-primary-bright">juanda@rhel-node01:~$</span>
               </code>
             </pre>
           </div>
@@ -317,7 +318,7 @@ function Contact() {
                 +56 9 2398 6590
               </a>
             </div>
-            <p className="mt-4 text-xs text-muted-foreground">• Calls: Spanish only<br />• Messaging: All languages</p>
+            <p className="mt-4 text-xs text-muted-foreground">Available for messages.</p>
           </div>
         </AnimatedContent>
 

@@ -125,7 +125,7 @@ interface AuroraProps {
 export default function Aurora(props: AuroraProps) {
   // Colores por defecto ajustados al tema oscuro: Azul RHEL / Cyan Eléctrico / Violeta
   const { 
-    colorStops = ['#1d4ed8', '#38bdf8', '#6366f1'], 
+    colorStops = ['#fbfbfc', '#3d0374', '#e0e0e2'], 
     amplitude = 1.0, 
     blend = 0.5 
   } = props;

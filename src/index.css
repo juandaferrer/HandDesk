@@ -5,7 +5,7 @@
 /* Dark-only theme para estética de infraestructura / DevOps */
 :root {
   /* Fondo principal: Gris muy oscuro con un toque frío (charcoal profundo) */
-  --background: oklch(0.14 0.01 260);         
+  --background: oklch(0% 0 0);         
   /* Texto principal: Blanco roto de alto contraste sin deslumbrar */
   --foreground: oklch(0.98 0 0);              
 
@@ -17,9 +17,9 @@
   --popover-foreground: oklch(0.98 0 0);
 
   /* Azul eléctrico / RHEL-inspired para elementos primarios */
-  --primary: oklch(0.62 0.19 255);            
-  --primary-bright: oklch(0.70 0.20 255);     
-  --primary-foreground: oklch(0.98 0 0);      
+  --primary: oklch(70.9% 0.00008 271.152);            
+  --primary-bright: oklch(80.152% 0.00009 271.152);     
+  --primary-foreground: oklch(30.919% 0.00004 271.152);      
 
   /* Elementos secundarios y superficies atenuadas */
   --secondary: oklch(0.23 0.015 260);         
