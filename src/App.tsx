@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route, Link } from 'react-router-dom'
+import { HashRouter, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom'
 import { HugeiconsIcon } from '@hugeicons/react'
 import {
   UserMultiple02Icon,
@@ -93,19 +93,36 @@ const PROJECTS = [
 ]
 
 function Nav() {
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault()
+    if (location.pathname !== '/') {
+      navigate('/')
+      setTimeout(() => {
+        document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' })
+      }, 100)
+    } else {
+      document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/70 backdrop-blur-md">
       <nav className="mx-auto flex h-14 max-w-6xl items-center gap-6 px-4 sm:px-6">
-        <a href="#" className="flex items-center gap-2.5 font-semibold tracking-wide text-foreground">
+        <a href="#about" onClick={(e) => handleNavClick(e, 'about')} className="flex items-center gap-2.5 font-semibold tracking-wide text-foreground">
           <img src={logo} alt="" className="size-6 rounded-full" />
           Juan David Ferrer
         </a>
         <div className="ml-auto hidden items-center gap-6 text-sm text-muted-foreground sm:flex">
-          <a href="/#about" className="transition-colors hover:text-foreground">About</a>
-          <a href="/#skills" className="transition-colors hover:text-foreground">Skills</a>
-          <a href="/#projects" className="transition-colors hover:text-foreground">Projects</a>
-          <a href="/#contact" className="transition-colors hover:text-foreground">Contact</a>
-          <Link to="/poems" className="transition-colors hover:text-foreground">Writings</Link>
+          <a href="#about" onClick={(e) => handleNavClick(e, 'about')} className="transition-colors hover:text-foreground">About</a>
+          <a href="#skills" onClick={(e) => handleNavClick(e, 'skills')} className="transition-colors hover:text-foreground">Skills</a>
+          <a href="#projects" onClick={(e) => handleNavClick(e, 'projects')} className="transition-colors hover:text-foreground">Projects</a>
+          <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="transition-colors hover:text-foreground">Contact</a>
+          <Link to="/poems" className="transition-colors hover:text-foreground flex items-center gap-1.5">
+            <HugeiconsIcon icon={BookOpen01Icon} size={15} strokeWidth={1.8} /> Writings
+          </Link>
         </div>
         <a
           href="https://github.com/juandaferrer"
@@ -123,14 +140,14 @@ function Nav() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden">
+    <section id="about" className="relative overflow-hidden scroll-mt-20">
       {!window.matchMedia('(prefers-reduced-motion: reduce)').matches && (
         <div className="absolute inset-0 opacity-50" aria-hidden>
           <Aurora colorStops={['#fdfdfd', '#949494', '#c2c2c2']} amplitude={1.1} blend={0.55} speed={0.6} />
         </div>
       )}
       <div className="absolute inset-0 opacity-50 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" aria-hidden>
-        <Aurora colorStops={['#747474', '#dfdfdf', '#797979']} amplitude={0.0001} blend={0.55} speed={0.1} />
+        <Aurora colorStops={['#747474', '#dfdfdf', '#797979']} amplitude={1} blend={0.55} speed={0.1} />
       </div>
       <div className="relative mx-auto max-w-6xl px-4 pt-36 pb-20 text-center sm:px-6 sm:pt-44">
         <FadeContent duration={800}>
@@ -158,6 +175,10 @@ function Hero() {
           <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
             <a
               href="#contact"
+              onClick={(e) => {
+                e.preventDefault()
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+              }}
               className="flex items-center gap-2.5 rounded-full bg-primary-bright px-7 py-3.5 font-semibold text-primary-foreground shadow-lg shadow-primary/40 transition-transform hover:scale-105"
             >
               <HugeiconsIcon icon={Mail01Icon} size={20} strokeWidth={2} />
@@ -378,7 +399,6 @@ function Footer() {
   )
 }
 
-// Componente para la página de Obras / Poemas
 function PoemsPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -408,7 +428,6 @@ function PoemsPage() {
                 so hungry for you.<br></br>
                 <br></br>
                 —Juan Ferrer, 26/10/26
-
               </p>
             </div>
           </AnimatedContent>
