@@ -1,3 +1,4 @@
+import { HashRouter, Routes, Route, Link } from 'react-router-dom'
 import { HugeiconsIcon } from '@hugeicons/react'
 import {
   UserMultiple02Icon,
@@ -15,6 +16,7 @@ import {
   ServerStackIcon,
   CpuIcon,
   GraduationCapIcon,
+  BookOpen01Icon,
 } from '@hugeicons/core-free-icons'
 
 import Aurora from '@/components/Aurora'
@@ -99,10 +101,11 @@ function Nav() {
           Juan David Ferrer
         </a>
         <div className="ml-auto hidden items-center gap-6 text-sm text-muted-foreground sm:flex">
-          <a href="#about" className="transition-colors hover:text-foreground">About</a>
-          <a href="#skills" className="transition-colors hover:text-foreground">Skills</a>
-          <a href="#projects" className="transition-colors hover:text-foreground">Projects</a>
-          <a href="#contact" className="transition-colors hover:text-foreground">Contact</a>
+          <a href="/#about" className="transition-colors hover:text-foreground">About</a>
+          <a href="/#skills" className="transition-colors hover:text-foreground">Skills</a>
+          <a href="/#projects" className="transition-colors hover:text-foreground">Projects</a>
+          <a href="/#contact" className="transition-colors hover:text-foreground">Contact</a>
+          <Link to="/poems" className="transition-colors hover:text-foreground">Writings</Link>
         </div>
         <a
           href="https://github.com/juandaferrer"
@@ -127,7 +130,7 @@ function Hero() {
         </div>
       )}
       <div className="absolute inset-0 opacity-50 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" aria-hidden>
-        <Aurora colorStops={['#747474', '#dfdfdf', '#797979']} amplitude={1} blend={0.55} speed={0.1} />
+        <Aurora colorStops={['#747474', '#dfdfdf', '#797979']} amplitude={0.0001} blend={0.55} speed={0.1} />
       </div>
       <div className="relative mx-auto max-w-6xl px-4 pt-36 pb-20 text-center sm:px-6 sm:pt-44">
         <FadeContent duration={800}>
@@ -160,15 +163,13 @@ function Hero() {
               <HugeiconsIcon icon={Mail01Icon} size={20} strokeWidth={2} />
               Get in Touch
             </a>
-            <a
-              href="https://github.com/juandaferrer"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-2.5 rounded-full border border-white/15 px-7 py-3.5 font-medium transition-colors hover:border-white/30 hover:bg-white/5"
+            <Link
+              to="/poems"
+              className="flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-7 py-3.5 font-medium transition-colors hover:border-white/30 hover:bg-white/10"
             >
-              <HugeiconsIcon icon={GithubIcon} size={20} strokeWidth={2} />
-              Explore GitHub
-            </a>
+              <HugeiconsIcon icon={BookOpen01Icon} size={20} strokeWidth={2} />
+              Check out my works
+            </Link>
           </div>
           <p className="mt-4 text-sm text-muted-foreground">
             Based in Santiago, Chile · Preparing for EX200 &amp; EX294
@@ -377,7 +378,57 @@ function Footer() {
   )
 }
 
-export default function App() {
+// Componente para la página de Obras / Poemas
+function PoemsPage() {
+  return (
+    <div className="min-h-screen bg-background text-foreground">
+      <Nav />
+      <main className="mx-auto max-w-4xl px-4 pt-36 pb-20 sm:px-6">
+        <FadeContent duration={800}>
+          <p className="text-xs font-semibold tracking-widest text-primary-bright uppercase">Writings</p>
+          <h1 className="mt-3 font-heading text-3xl font-bold tracking-tight sm:text-4xl">Works and Poems</h1>
+          <p className="mt-2 text-muted-foreground">An independent space dedicated to narrative and poetic exploration.</p>
+        </FadeContent>
+
+        <div className="mt-12 space-y-6">
+          <AnimatedContent distance={40} duration={0.8} threshold={0.15}>
+            <div className="rounded-xl border border-white/10 bg-card/60 p-6 sm:p-8">
+              <div className="flex items-center justify-between gap-4 mb-3">
+                <span className="text-xs font-semibold tracking-widest text-primary-bright uppercase">Poetry</span>
+                <span className="rounded-full bg-primary/20 px-3 py-1 text-xs text-primary-bright font-medium">1</span>
+              </div>
+              <h2 className="font-heading text-xl font-bold tracking-tight sm:text-2xl">The Aftermaths</h2>
+              <p className="mt-3 leading-relaxed text-muted-foreground text-sm">
+                I feel that believing you is  a trap.<br></br>
+                How can I even trust you after that night?<br></br>
+                I still remember that evening...<br></br>
+                my heart still does,<br></br>
+                my sad heart,<br></br>
+                my hungry sad heart,<br></br>
+                so hungry for you.<br></br>
+                <br></br>
+                —Juan Ferrer, 26/10/26
+
+              </p>
+            </div>
+          </AnimatedContent>
+        </div>
+
+        <div className="mt-12">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-2.5 text-sm font-medium transition-colors hover:border-white/30 hover:bg-white/5"
+          >
+            ← Return to the beginning
+          </Link>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  )
+}
+
+function Home() {
   return (
     <>
       <Nav />
@@ -389,5 +440,16 @@ export default function App() {
       </main>
       <Footer />
     </>
+  )
+}
+
+export default function App() {
+  return (
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/poems" element={<PoemsPage />} />
+      </Routes>
+    </HashRouter>
   )
 }
