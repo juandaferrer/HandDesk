@@ -461,7 +461,7 @@ function PoemsPage() {
           the one that still fights my happiness:<br />
           Where are you now, my dearest love?<br />
           <br />
-          —Juan Ferrer, 1/11/2026——4/11/2026
+          —Juan Ferrer, 1/11/2026—4/11/2026
         </>
       ),
     },
@@ -489,7 +489,7 @@ function PoemsPage() {
           la que aún rechaza a mi felicidad:<br />
           ¿Dónde estás tu, mi queridísimo amor?<br />
           <br />
-          —Juan Ferrer, 1/11/2026——4/11/2026
+          —Juan Ferrer, 1/11/2026—4/11/2026
         </>
       ),
     },
