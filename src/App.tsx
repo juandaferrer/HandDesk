@@ -400,37 +400,130 @@ function Footer() {
 }
 
 function PoemsPage() {
+  const POEMS = [
+    {
+      eyebrow: "Poetry",
+      tag: "1",
+      title: "The Aftermaths",
+      body: (
+        <>
+          I feel that believing you is a trap.<br />
+          How can I even trust you after that night?<br />
+          I still remember that evening...<br />
+          my heart still does,<br />
+          my sad heart,<br />
+          my hungry sad heart,<br />
+          so hungry for you.<br />
+          <br />
+          —Juan Ferrer, 26/10/26
+        </>
+      ),
+    },
+    {
+      eyebrow: "Poetry",
+      tag: "1 (Spanish)",
+      title: "Las consecuencias",
+      body: (
+        <>
+          Siento que creerte es una trampa.<br />
+          ¿Cómo puedo siquiera confiar en ti después de esa noche?<br />
+          Aún recuerdo esa noche...<br />
+          mi corazón todavía lo hace,<br />
+          mi triste corazón,<br />
+          mi hambriento y triste corazón,<br />
+          tan hambriento de ti.<br />
+          <br />
+          —Juan Ferrer, 26/10/26
+        </>
+      ),
+    },
+    {
+      eyebrow: "Poetry",
+      tag: "2",
+      title: "Thoughts",
+      body: (
+        <>
+          Now the house feels so empty inside.<br />
+          Sleeping in it without you makes me cry.<br />
+          And now that I wake up without your kisses,<br />
+          along with the pain I suffer right now,<br />
+          I am missing the warmth of your kisses.<br />
+          <br />
+          Your absence is haunting me in the house,<br />
+          in the bathroom your makeup still lingers,<br />
+          in the living room your magazine rests,<br />
+          in the kitchen your teacup is still there,<br />
+          and upon the wall your bridal portrait.<br />
+          <br />
+          There's a doubt that is robbing my sleep time,<br />
+          one that drives me straight into madness,<br />
+          one that always leaves me in agony,<br />
+          the one that still fights my happiness:<br />
+          Where are you now, my dearest love?<br />
+          <br />
+          —Juan Ferrer, 1/11/2026——4/11/2026
+        </>
+      ),
+    },
+    {
+      eyebrow: "Poetry",
+      tag: "2 (Spanish)",
+      title: "Pensamientos",
+      body: (
+        <>
+          Ahora la casa se siente vacía.<br />
+          Dormir en ella sin ti me hace llorar.<br />
+          Y ahora que despierto sin tus besos,<br />
+          junto con el dolor que ahora mismo sufro,<br />
+          hace falta el calor de tus besos.<br />
+          <br />
+          Tu ausencia me acecha en la casa,<br />
+          en el baño aún sigue tu maquillaje,<br />
+          en la sala descansa ahí tu revista,<br />
+          en la cocina sigue tu taza de té,<br />
+          y sobre la pared tu foto de novia.<br />
+          <br />
+          Hay una duda que me priva de dormir,<br />
+          una que me lleva a la locura,<br />
+          una que siempre me hace agonizar,<br />
+          la que aún rechaza a mi felicidad:<br />
+          ¿Dónde estás tu, mi queridísimo amor?<br />
+          <br />
+          —Juan Ferrer, 1/11/2026——4/11/2026
+        </>
+      ),
+    },
+
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Nav />
-      <main className="mx-auto max-w-4xl px-4 pt-36 pb-20 sm:px-6">
+      <main className="mx-auto max-w-5xl px-4 pt-36 pb-20 sm:px-6">
         <FadeContent duration={800}>
           <p className="text-xs font-semibold tracking-widest text-primary-bright uppercase">Writings</p>
-          <h1 className="mt-3 font-heading text-3xl font-bold tracking-tight sm:text-4xl">Works and Poems</h1>
-          <p className="mt-2 text-muted-foreground">An independent space dedicated to narrative and poetic exploration.</p>
+          <h1 className="mt-3 font-heading text-4xl font-bold tracking-tight sm:text-3xl">Works and Poems</h1>
+          <p className="mt-4 text-muted-foreground">An independent space dedicated to narrative and poetic exploration.</p>
         </FadeContent>
 
-        <div className="mt-12 space-y-6">
-          <AnimatedContent distance={40} duration={0.8} threshold={0.15}>
-            <div className="rounded-xl border border-white/10 bg-card/60 p-6 sm:p-8">
-              <div className="flex items-center justify-between gap-4 mb-3">
-                <span className="text-xs font-semibold tracking-widest text-primary-bright uppercase">Poetry</span>
-                <span className="rounded-full bg-primary/20 px-3 py-1 text-xs text-primary-bright font-medium">1</span>
-              </div>
-              <h2 className="font-heading text-xl font-bold tracking-tight sm:text-2xl">The Aftermaths</h2>
-              <p className="mt-3 leading-relaxed text-muted-foreground text-sm">
-                I feel that believing you is  a trap.<br></br>
-                How can I even trust you after that night?<br></br>
-                I still remember that evening...<br></br>
-                my heart still does,<br></br>
-                my sad heart,<br></br>
-                my hungry sad heart,<br></br>
-                so hungry for you.<br></br>
-                <br></br>
-                —Juan Ferrer, 26/10/26
-              </p>
+        {/* Contenedor de columnas fluidas tipo Masonry */}
+        <div className="mt-12 columns-1 md:columns-2 gap-6 space-y-6">
+          {POEMS.map((p) => (
+            <div key={p.title} className="break-inside-avoid">
+              <AnimatedContent distance={40} duration={0.8} threshold={0.15}>
+                <div className="rounded-xl border border-white/10 bg-card/60 p-6 sm:p-8">
+                  <div className="flex items-center justify-between gap-4 mb-3">
+                    <span className="text-xs font-semibold tracking-widest text-primary-bright uppercase">{p.eyebrow}</span>
+                    <span className="rounded-full bg-primary/20 px-3 py-1 text-xs text-primary-bright font-medium">{p.tag}</span>
+                  </div>
+                  <h2 className="font-heading text-xl font-bold tracking-tight sm:text-2xl">{p.title}</h2>
+                  <p className="mt-3 leading-relaxed text-muted-foreground text-sm">
+                    {p.body}
+                  </p>
+                </div>
+              </AnimatedContent>
             </div>
-          </AnimatedContent>
+          ))}
         </div>
 
         <div className="mt-12">
@@ -439,10 +532,9 @@ function PoemsPage() {
             className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-2.5 text-sm font-medium transition-colors hover:border-white/30 hover:bg-white/5"
           >
             ← Return to the beginning
-          </Link>
-        </div>
+          </Link> 
+        </div> 
       </main>
-      <Footer />
     </div>
   )
 }

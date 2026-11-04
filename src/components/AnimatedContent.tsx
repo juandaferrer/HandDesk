@@ -30,13 +30,13 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
   distance = 100,
   direction = 'vertical',
   reverse = false,
-  duration = 0.8,
+  duration = 2,
   ease = 'power3.out',
   initialOpacity = 0,
   animateOpacity = true,
   scale = 1,
   threshold = 0.1,
-  delay = 0,
+  delay = 1,
   disappearAfter = 0,
   disappearDuration = 0.5,
   disappearEase = 'power3.in',
@@ -99,8 +99,13 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
       trigger: el,
       scroller: scrollerTarget || window,
       start: `top ${startPct}%`,
-      once: true,
-      onEnter: () => tl.play()
+      once: false, // <-- CAMBIADO A FALSE PARA QUE SE REPITA CADA VEZ QUE SUBES Y BAJAS
+      onEnter: () => tl.play(),
+      onLeaveBack: () => {
+        // Opcional: Esto hace que el elemento vuelva a su estado inicial invisible 
+        // cuando haces scroll hacia arriba y sale de la pantalla, preparándolo para re-animarse al bajar.
+        tl.reverse(0); 
+      }
     });
 
     return () => {
