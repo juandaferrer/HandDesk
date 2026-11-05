@@ -456,7 +456,7 @@ function PoemsPage() {
           and upon the wall your bridal portrait.<br />
           <br />
           There's a doubt that is robbing my sleep time,<br />
-          one that drives me straight into madness,<br></br>
+          one that drives me straight into madness,<br />
           one that always leaves me in agony,<br />
           the one that still fights my happiness:<br />
           Where are you now, my dearest love?<br />
@@ -517,9 +517,9 @@ function PoemsPage() {
                     <span className="rounded-full bg-primary/20 px-3 py-1 text-xs text-primary-bright font-medium">{p.tag}</span>
                   </div>
                   <h2 className="font-heading text-xl font-bold tracking-tight sm:text-2xl">{p.title}</h2>
-                  <p className="mt-3 leading-relaxed text-muted-foreground text-sm">
+                  <div className="mt-3 leading-relaxed text-muted-foreground text-sm">
                     {p.body}
-                  </p>
+                  </div>
                 </div>
               </AnimatedContent>
             </div>
